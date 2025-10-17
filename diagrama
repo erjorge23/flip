@@ -1,0 +1,19 @@
+@startuml
+title Arquitectura GreenDelivery Pipeline (Transporte de Dispositivos Electrónicos)
+actor "Tracker IoT (Simulado)" as Edge
+component "Broker MQTT" as Broker
+component "Flujo Ingesta (Node-RED)" as Ingesta
+database "PostgreSQL" as Storage
+component "Dashboard (Metabase)" as Dashboard
+
+Edge --> Broker : Publica JSON cada 2s (temp, humidity, g_force)
+Broker --> Ingesta : Suscribe y valida.
+Ingesta --> Storage : Persiste con reintentos.
+Storage --> Dashboard : Consultas para KPIs.
+
+note bottom of Edge : Rasgo NIST: Elasticidad (escalable a múltiples trackers)\nTrade-off: Dependencia de broker para desacoplamiento
+note bottom of Broker : Rasgo NIST: Pago por uso (bajo costo para mensajes IoT)\nTrade-off: Latencia mínima vs. overhead en seguridad
+note bottom of Ingesta : Rasgo NIST: Elasticidad (serverless para picos de datos)\nTrade-off: Vendor lock-in (dependencia de Node-RED)
+note bottom of Storage : Rasgo NIST: Alta disponibilidad (redundancia cloud)\nTrade-off: ACID para integridad vs. escalabilidad horizontal limitada
+note bottom of Dashboard : Rasgo NIST: Elasticidad (queries bajo demanda)\nTrade-off: Facilidad BI vs. costo en volúmenes grandes de datos
+@enduml
