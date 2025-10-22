@@ -1,0 +1,54 @@
+[
+    {
+        "id": "ca63fbfd1fdc7f1a",
+        "type": "mqtt in",
+        "z": "59c85fa6c4e9d3af",
+        "name": "MQTT Telemetría",
+        "topic": "greendelivery/trackers/telemetry",
+        "qos": "1",
+        "datatype": "auto",
+        "broker": "641b54fd95ed03ed",
+        "nl": false,
+        "rap": false,
+        "rh": 0,
+        "inputs": 0,
+        "x": 100,
+        "y": 320,
+        "wires": [
+            [
+                "510258cd61b348be"
+            ]
+        ]
+    },
+    {
+        "id": "641b54fd95ed03ed",
+        "type": "mqtt-broker",
+        "name": "mosquitto",
+        "broker": "mosquitto",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    }
+]
